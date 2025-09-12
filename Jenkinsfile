@@ -35,7 +35,7 @@ pipeline{
                        docker build -t 448049818055.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${appVersion} .
 
                        docker push 448049818055.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${appVersion}
-                    """
+                    """  
                 }
                 }
             }
