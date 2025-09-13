@@ -1,4 +1,4 @@
-pipeline{
+/* pipeline{
     agent{
         label 'AGENT-1'
     }
@@ -41,5 +41,29 @@ pipeline{
             }
         }
           
+    }
+}
+ */
+
+
+pipeline {
+    agent {
+        label 'AGENT-1'
+    }
+    environment{
+        appVersion = ''
+    }
+
+    stages{
+        stage('Read Package.Json'){
+            steps {
+                script{
+                   def packageJSON = readJSON file: 'package.json'
+                   appVersion = packageJSON.version
+                   echo "App Version is ${appVersion}"
+
+                }
+            }
+        }
     }
 }
