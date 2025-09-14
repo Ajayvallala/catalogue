@@ -6,7 +6,7 @@ pipeline{
         appVersion = ''
     }
     parameters{
-        booleanParam(name: 'Deploy', defaultValue: false, description: 'Toggle this value to Deploy')
+        booleanParam(name: 'deploy', defaultValue: false, description: 'Toggle this value to Deploy')
     }
 
     stages{
@@ -44,21 +44,21 @@ pipeline{
             }
         }
         stage('Trigger CD'){
-             when {
-                expression { 
-                    params.Deploy == true 
+              when{
+                expression { params.deploy }
+              }
+             steps {
+                script {
+                    build job: 'catalogue-cd',
+                    parameters: [
+                        string(name: 'appVersion', value: "${appVersion}"),
+                        string(name: 'deploy_to', value: 'dev')
+                    ],
+                    propagate: false,  // even SG fails VPC will not be effected
+                    wait: false // VPC will not wait for SG pipeline completion
                 }
             }
-            steps{
-                 build job: 'catalogue-cd'
-                 parameters: [
-                              string(name: 'Imageversion', value: "${appVarsion}"),
-                              string(name: 'Deploy', value: 'dev') // Example: passing an upstream parameter
-                          ],
-                 wait: false
-                 propagate: false
-            }
-        }
+        } 
           
     }
 }
