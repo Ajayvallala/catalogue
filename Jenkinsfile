@@ -74,6 +74,19 @@ pipeline{
         } 
           
     }
+
+    post{
+    always {
+        echo "Pipeline exection completed"
+        deleteDir()
+    }
+    success{
+        echo "Success"
+    }
+    failure{
+        echo "Failure"
+    }
+ }
 }
  
 
