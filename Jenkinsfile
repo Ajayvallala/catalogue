@@ -7,6 +7,7 @@ pipeline{
     }
     parameters{
         booleanParam(name: 'deploy', defaultValue: false, description: 'Toggle this value to Deploy')
+        choice(name: 'deploy', choices: ['dev', 'qa', 'prod'], description: 'Pick Environment')
     }
 
     stages{
@@ -65,7 +66,7 @@ pipeline{
                     build job: 'catalogue-cd',
                     parameters: [
                         string(name: 'appVersion', value: "${appVersion}"),
-                        string(name: 'deploy_to', value: 'dev')
+                        string(name: 'deploy_to', value: "${params.deploy}")
                     ],
                     propagate: false,  // even SG fails VPC will not be effected
                     wait: false // VPC will not wait for SG pipeline completion
