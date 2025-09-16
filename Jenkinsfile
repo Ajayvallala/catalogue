@@ -7,7 +7,6 @@ pipeline{
     }
     parameters{
         booleanParam(name: 'deploy', defaultValue: false, description: 'Toggle this value to Deploy')
-        choice(name: 'deploy', choices: ['dev', 'qa', 'prod'], description: 'Pick Environment')
     }
 
     stages{
