@@ -8,5 +8,5 @@ if(! env.BRANCH_NAME.equalsIgnoreCase('main')){
  nodejsEKSpipeline(configmap)
 }
 else{
- echo "Please Proceed with Prod Process"   
+ echo "Please Proceed with Prod Process"      
 }
