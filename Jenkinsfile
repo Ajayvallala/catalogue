@@ -2,4 +2,4 @@
 def configmap = [
     project:"roboshop"
 ]
-sample-pipeline(configmap)
+samplePipeline(configmap)
