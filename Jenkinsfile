@@ -1,8 +1,12 @@
 @Library('jenkins-shared-library') _
 
 def configmap = [
-    name: 'Ajay',
-    surname: 'vallala'
+    project: 'roboshop',
+    component: 'catalogue'
 ]
-
-samplePipeline(configmap)
+if(! env.BRANCH_NAME.equalsIgnoreCase('main')){
+ nodejsEKSpipeline(configmap)
+}
+else{
+ echo "Please Proceed with Prod Process"
+}
