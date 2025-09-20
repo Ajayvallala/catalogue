@@ -1,3 +1,8 @@
 @Library('jenkins-shared-library') _
 
-nodejsEKSpipeline()
+def configmap = [
+    name: 'Ajay',
+    surname: 'vallala'
+]
+
+samplePipeline(configmap)
