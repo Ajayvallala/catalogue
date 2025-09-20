@@ -1,3 +1,3 @@
 @Library('jenkins-shared-library') _
 
-sample-pipeline()
+sample-pipeline(configmap)
