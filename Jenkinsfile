@@ -1,12 +1,18 @@
-@Library('jenkins-shared-library') _
+pipeline {
+    agent {
+        label 'AGENT-1'
+    }
 
-def configmap = [
-    project: 'roboshop',
-    component: 'catalogue'
-]
-if(! env.BRANCH_NAME.equalsIgnoreCase('main')){
- nodejsEKSpipeline(configmap)
-}
-else{
- echo "Please Proceed with Prod Process"
+    environment {
+        appVersion=''
+    }
+    stages {
+        stage('read package.json') {
+            steps {
+                def packageJson = readJSON file: 'package.json'
+                appVersion = packageJson.version
+                echo "appVersion is $appVersion"
+            }
+        }
+    }
 }
