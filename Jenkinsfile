@@ -9,16 +9,12 @@ pipeline {
         PROJECT="roboshop"
         REGION="us-east-1"
     }
-    options{
-        disableConcurrentBuilds()
-        timeout(time:10,unit:'MINUTES')
-    }
     stages{
         stage('Read Package.json'){
             steps{
                 script{
                     def packageJson= readJSON file: 'package.json'
-                    appVersion = packageJSON.version
+                    appVersion= packageJSON.version
                     echo "appVersion id ${appVersion}"
                 }
             }
