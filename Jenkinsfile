@@ -28,6 +28,28 @@ pipeline {
                 }
             }
         }
+        stage('Unit Testing '){
+            steps{
+                script{
+                    sh """
+                    echo "Unit testing started"
+                    """
+                }
+            }
+        }
+        stage('sonar-scan'){
+            environment {
+                ScannerHome = tool 'sonar-scanner'
+            }
+            steps{
+                script{
+                    withSonarQubeEnv(installationName: 'sonar-server'){
+                        sh "${ScannerHome}/bin/sonar-scanner"
+                    }
+
+                }
+            }
+        }
         stage('Docker Image Build'){
                  steps{
                     script{
@@ -43,5 +65,17 @@ pipeline {
                 }
             }
         }
+    }
+}
+
+post {
+    always{
+        deleteDir()
+    }
+    success{
+        echo "Build has been success"
+    }
+    failure{
+        error "Build has been failed"
     }
 }
