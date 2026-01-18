@@ -2,7 +2,7 @@ pipeline {
     agent {
         label 'AGENT-1'
     }
-    envirnoment {
+    environment {
         appVersion=''
         COMPONENT="catalogue"
         AWS_ACCOUNT_ID = "448049818055"
