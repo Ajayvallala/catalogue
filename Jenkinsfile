@@ -53,10 +53,12 @@ pipeline {
 
         stage('Quality Gates'){
             steps{
-                timeout(time:1,unit:"HOURS")
-                waitForQualityGate abortPipeline:true
+                timeout(time: 1, unit: 'HOURS'){
+                    waitForQualityGate abortPipeline: true
+                }          
             }
         }
+        
         stage('Docker Image Build'){
                  steps{
                     script{
