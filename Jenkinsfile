@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'AEGNT-1'
+        label 'AGENT-1'
     }
     environment {
         appVersion=''
@@ -58,7 +58,7 @@ pipeline {
                 }          
             }
         }
-        
+
         stage('Docker Image Build'){
                  steps{
                     script{
