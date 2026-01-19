@@ -17,4 +17,4 @@
     project : "roboshop",
     component : "catalogue"
   ]
-  nodejsEKSpipeline.ajay(configMap)
+  nodejsEKSpipeline(configMap)
