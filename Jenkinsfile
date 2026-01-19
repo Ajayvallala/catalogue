@@ -14,7 +14,7 @@
 
 @Library('jenkins-shared-library') _
   def configMap = [
-    project: "roboshop",
-    component: "catalogue"
+    project : "roboshop",
+    component : "catalogue"
   ]
-  nodejsEKSpipeline(configMap)
+  nodejsEKSpipeline.ajay(configMap)
