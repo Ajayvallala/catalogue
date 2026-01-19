@@ -17,7 +17,7 @@
     project : "roboshop",
     component : "catalogue"
   ]
-  if(! env.BRANCH_NAME.equalsIgnoreCase('main')){
+  if( ! env.BRANCH_NAME.equalsIgnoreCase('main') ){
     nodejsEKSpipeline(configMap)
   }
   else{
