@@ -75,16 +75,18 @@ pipeline {
             }
         }
     }
-}
 
-post {
-    always{
-        deleteDir()
+
+    post {
+        always{
+            deleteDir()
+        }
+        success{
+            echo "Build has been success"
+        }
+        failure{
+            error "Build has been failed"
+        }
     }
-    success{
-        echo "Build has been success"
-    }
-    failure{
-        error "Build has been failed"
-    }
+
 }
