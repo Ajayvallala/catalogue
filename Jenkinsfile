@@ -17,4 +17,10 @@
     project : "roboshop",
     component : "catalogue"
   ]
-  nodejsEKSpipeline(configMap)
+  if(! env.BRANCH_NAME.equalsIgnoreCase('main')){
+    nodejsEKSpipeline(configMap)
+  }
+  else{
+    echo "Please Proceed with Prod Process"
+  }
+ 
