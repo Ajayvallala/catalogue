@@ -10,7 +10,7 @@ pipeline {
         REGION="us-east-1"
     }
     parameters{
-        booleanParams(name: 'Deploy', defaultValue: false, description: 'Toggle this value to deply in DEV envirnoment')
+        booleanParam(name: 'Deploy', defaultValue: false, description: 'Toggle this value to deply in DEV envirnoment')
     }
     stages{
         stage('Read Package.json'){
