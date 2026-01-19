@@ -9,6 +9,9 @@ pipeline {
         PROJECT="roboshop"
         REGION="us-east-1"
     }
+    parameters{
+        booleanParams(name: 'Deploy', defaultValue: false, description: 'Toggle this value to deply in DEV envirnoment')
+    }
     stages{
         stage('Read Package.json'){
             steps{
@@ -37,7 +40,7 @@ pipeline {
                 }
             }
         }
-/*         stage('sonar-scan'){
+        stage('sonar-scan'){
             environment {
                 ScannerHome = tool 'sonar-scanner'
             }
@@ -57,7 +60,7 @@ pipeline {
                     waitForQualityGate abortPipeline: true
                 }          
             }
-        } */
+        }
 
         stage('Check Dependabot Alerts') {
             environment { 
@@ -109,7 +112,7 @@ pipeline {
                 }
             }
         }
-        stage('Check Scan Results') {
+/*         stage('Check Scan Results') {
             steps {
                 script {
                     withAWS(credentials: 'aws-creds', region: 'us-east-1') {
@@ -143,18 +146,37 @@ pipeline {
                 }
             }
         }
+    } */
+    stage('trigger deploy'){
+        when{
+            expression { params.deploy }
+        }
+        steps{
+            script{
+                build job: 'catalogue-cd'
+                parameters[
+                    string(name: 'appVersion', value: "${appVersion}"),
+                    string(name: 'deploy_to', value: 'dev')
+                ]
+                propagate: false
+                wait: false
+            }
+        }
     }
 
-    post {
-        always{
-            deleteDir()
-        }
-        success{
-            echo "Build has been success"
-        }
-        failure{
-            error "Build has been failed"
-        }
+        post {
+            always{
+                deleteDir()
+            }
+            success{
+                echo "Build has been success"
+            }
+            failure{
+                error "Build has been failed"
+            }
     }
+    }
+
+
 
 }
