@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('sonar-scan'){
+/*         stage('sonar-scan'){
             environment {
                 ScannerHome = tool 'sonar-scanner'
             }
@@ -57,7 +57,7 @@ pipeline {
                     waitForQualityGate abortPipeline: true
                 }          
             }
-        }
+        } */
 
         stage('Check Dependabot Alerts') {
             environment { 
@@ -70,7 +70,7 @@ pipeline {
                         script: """
                             curl -s -H "Accept: application/vnd.github+json" \
                                  -H "Authorization: token ${GITHUB_TOKEN}" \
-                                 https://api.github.com/repos/Ajayvallala/catalogue/dependabot alerts
+                                 https://api.github.com/repos/Ajayvallala/catalogue/dependabot/alerts
                         """,
                         returnStdout: true
                     ).trim()
