@@ -24,7 +24,7 @@
 //     echo "Please Proceed with Prod Process"
 //   }
 
-@library('jenkins-shard-library') _
+@library('jenkins-shared-library') _
   def configMap = [
     project : "roboshop",
     component : "catalogue"
