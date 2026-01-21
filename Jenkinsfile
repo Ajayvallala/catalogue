@@ -177,7 +177,7 @@ pipeline{
         success{
             echo "Pipeline Success"
         }
-        failed{
+        failure{
             error "Pipeline failed"
         }
     }
